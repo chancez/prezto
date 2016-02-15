@@ -240,6 +240,9 @@ fi
 # Vi Key Bindings
 #
 
+# Custom clear screen binding
+bindkey -M vicmd "$key_info[Control]L" clear-screen
+
 # Edit command in an external editor.
 bindkey -M vicmd "v" edit-command-line
 
