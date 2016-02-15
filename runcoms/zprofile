@@ -5,10 +5,10 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+
 #
 # Browser
 #
-
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
 fi
@@ -17,8 +17,9 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+export EDITOR='nvim'
+export VISUAL='nvim'
+export GIT_EDITOR='nvim'
 export PAGER='less'
 
 #
@@ -37,13 +38,24 @@ fi
 typeset -gU cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
+cdpath=(
+  $cdpath
+  $HOME
+  $PROJECT_HOME
+  $HOME/go/src/github.com/ecnahc515
+  $HOME/go/src/github.com/coreos
+  $HOME/go/src/github.com/coreos-inc
+)
+
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+  $HOME/bin
+  $HOME/.tmuxifier/bin
+  $GOPATH/bin
+  $GOROOT/bin
   /usr/local/{bin,sbin}
+  /opt/kubernetes/platforms/darwin/amd64
   $path
 )
 

@@ -9,3 +9,26 @@
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+export FZF_TMUX=0
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export _FASD_BLACKLIST="Godeps vendor"
+
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export GOROOT="/usr/local/opt/go/libexec"
+export WORKON_HOME="$HOME/.virtualenvs"
+export PROJECT_HOME="$HOME/projects"
+export KUBERNETES_MASTER="http://172.17.4.101:8080"
+export VAGRANT_DEFAULT_PROVIDER="virtualbox"
+export FLEETCTL_TUNNEL=172.17.8.101
+export ETCDCTL_PEERS=http://172.17.8.101:2379,http://172.17.8.102:2379,http://172.17.8.103:2379
+export SECURE_REPO=$HOME/projects/secure
+export DOCKER_HOST=172.17.8.101:2375
+
+#export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
+
+
+[ -f "$HOME/.zshenv_secrets" ] && source "$HOME/.zshenv_secrets"
+
