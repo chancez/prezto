@@ -29,7 +29,6 @@ export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-w
 #export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
 export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
 
-source $HOME/.dvm/dvm.sh
-[ -f "$HOME/.zshenv_secrets" ] && source "$HOME/.zshenv_secrets"
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+[[ -s "$HOME/.zshenv_secrets" ]] && source "$HOME/.zshenv_secrets"
+[[ -s "$HOME/.dvm/dvm.sh" ]] && source $HOME/.dvm/dvm.sh
+[[ -s "${HOME}/.iterm2_shell_integration.zsh" ]] && source ${HOME}/.iterm2_shell_integration.zsh

@@ -12,6 +12,7 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(hub alias -s)"
+[[ -s "$(brew --prefix dvm)/dvm.sh" ]] && source "$(brew --prefix dvm)/dvm.sh"
 
 # List folders, and sizes
 alias ducks='du -cksh * | sort -rn|head -11'
