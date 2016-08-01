@@ -25,10 +25,11 @@ export VAGRANT_DEFAULT_PROVIDER="virtualbox"
 export FLEETCTL_TUNNEL=172.17.8.101
 export ETCDCTL_PEERS=http://172.17.8.101:2379,http://172.17.8.102:2379,http://172.17.8.103:2379
 export SECURE_REPO=$HOME/projects/secure
-export DOCKER_HOST=172.17.8.101:2375
-
+export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1b-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-east-1a-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s-internal/kubeconfig:$HOME/projects/coreos-kubernetes/multi-node/vagrant/kubeconfig:$HOME/projects/coreos-kubernetes/single-node/kubeconfig
 #export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
+export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
 
-
+source $HOME/.dvm/dvm.sh
 [ -f "$HOME/.zshenv_secrets" ] && source "$HOME/.zshenv_secrets"
 
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
