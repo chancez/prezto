@@ -25,12 +25,19 @@ export VAGRANT_DEFAULT_PROVIDER="virtualbox"
 export FLEETCTL_TUNNEL=172.17.8.101
 export ETCDCTL_PEERS=http://172.17.8.101:2379,http://172.17.8.102:2379,http://172.17.8.103:2379
 export SECURE_REPO=$HOME/projects/secure
-export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1b-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-east-1a-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s-internal/kubeconfig:$HOME/projects/coreos-kubernetes/multi-node/vagrant/kubeconfig:$HOME/projects/coreos-kubernetes/single-node/kubeconfig
+export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1b-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-east-1a-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s-internal/kubeconfig:$HOME/projects/coreos-kubernetes/multi-node/vagrant/kubeconfig:$HOME/projects/coreos-kubernetes/single-node/kubeconfig:$HOME/go/src/github.com/coreos/bootkube/hack/single-node/cluster/auth/kubeconfig
 #export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
 export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
 
 [[ -s "$HOME/.zshenv_secrets" ]] && source "$HOME/.zshenv_secrets"
-[[ -s "$HOME/.dvm/dvm.sh" ]] && source $HOME/.dvm/dvm.sh
-[[ -s "${HOME}/.iterm2_shell_integration.zsh" ]] && source ${HOME}/.iterm2_shell_integration.zsh
+[[ -s "$HOME/.dvm/dvm.sh" ]] && source "$HOME/.dvm/dvm.sh"
+[[ -s "${HOME}/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
 [[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 export CARGO_HOME=$HOME/.cargo
+
+# The next line updates PATH for the Google Cloud SDK.
+[[ -s "$HOME/projects/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/path.zsh.inc"
+
+# The next line enables shell command completion for gcloud.
+[[ -s "$HOME/projects/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/completion.zsh.inc"
+
