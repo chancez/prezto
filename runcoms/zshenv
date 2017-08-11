@@ -12,9 +12,17 @@ fi
 
 export FZF_TMUX=0
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
+# https://github.com/junegunn/fzf/issues/809
+[ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
+
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+_fzf_compgen_path() {
+  ag -g "" "$1"
+}
 export _FASD_BLACKLIST="Godeps vendor"
 
+export AWS_DEFAULT_PROFILE='dev'
+export AWS_DEFAULT_REGION="us-east-2"
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export GOROOT="/usr/local/opt/go/libexec"
@@ -22,10 +30,12 @@ export WORKON_HOME="$HOME/.virtualenvs"
 export PROJECT_HOME="$HOME/projects"
 export KUBERNETES_MASTER="http://172.17.4.101:8080"
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
+export DOCKER_HOST=172.17.0.55:2375
 export FLEETCTL_TUNNEL=172.17.8.101
 export ETCDCTL_PEERS=http://172.17.8.101:2379,http://172.17.8.102:2379,http://172.17.8.103:2379
 export SECURE_REPO=$HOME/projects/secure
-export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1b-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-east-1a-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s-internal/kubeconfig:$HOME/projects/coreos-kubernetes/multi-node/vagrant/kubeconfig:$HOME/projects/coreos-kubernetes/single-node/kubeconfig:$HOME/go/src/github.com/coreos/bootkube/hack/single-node/cluster/auth/kubeconfig
+export INFRA_REPO=$HOME/projects/infra
+export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1b-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-east-1a-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s-internal/kubeconfig:$HOME/projects/coreos-kubernetes/multi-node/vagrant/kubeconfig:$HOME/projects/coreos-kubernetes/single-node/kubeconfig
 #export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
 export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
 

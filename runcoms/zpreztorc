@@ -35,6 +35,8 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'git' \
   'go' \
+  'ruby' \
+  'gpg' \
   'homebrew' \
   'archive' \
   'prompt' \

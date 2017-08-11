@@ -13,6 +13,7 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(hub alias -s)"
 [[ -s "$(brew --prefix dvm)/dvm.sh" ]] && source "$(brew --prefix dvm)/dvm.sh"
+source <(kubectl completion zsh)
 
 # List folders, and sizes
 alias ducks='du -cksh * | sort -rn|head -11'
@@ -29,21 +30,17 @@ alias pyclean='find . -type f -name "*.py[co]" -exec rm -f \{\} \;'
 alias gst='git status'
 alias gi='git'
 alias vim='nvim'
+alias k='kubectl'
 
+alias glgs="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+
+eval "$(direnv hook zsh)"
 eval "$(fasd --init auto)"
 #eval "$(tmuxifier init -)"
 #alias v='f -t -e vim -b viminfo'
 #alias sb='f -t -e subl'
 
-sbl() {
-  local files
-  files=$(cat /Users/chance/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/FileHistory.json |
-          jq -r '.[] | .closed[], .opened[] | .filename' |
-          while read line; do
-            [ -f "${line/\~/$HOME}" ] && echo "$line"
-          done | fzf -d -m -q "$*" -1) && subl ${files//\~/$HOME}
-}
-
+# opens files in ~/.viminfo
 v() {
   local files
   files=$(f -t -l -b viminfo |
@@ -64,9 +61,9 @@ jj() {
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fe() {
-  local file
-  file=$(fzf --query="$1" --select-1 --exit-0)
-  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # Modified version where you can press

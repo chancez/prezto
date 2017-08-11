@@ -45,6 +45,7 @@ cdpath=(
   $HOME/go/src/github.com/ecnahc515
   $HOME/go/src/github.com/coreos
   $HOME/go/src/github.com/coreos-inc
+  $HOME/go/src/github.com
 )
 
 
