@@ -13,29 +13,37 @@ fi
 export FZF_TMUX=0
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 # https://github.com/junegunn/fzf/issues/809
-[ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+[ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --no-height"
 
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-_fzf_compgen_path() {
-  ag -g "" "$1"
-}
-export _FASD_BLACKLIST="Godeps vendor"
+# adds previews to completion
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
-export AWS_DEFAULT_PROFILE='dev'
-export AWS_DEFAULT_REGION="us-east-2"
+alias fzf="fzf --bind 'ctrl-l:execute(less -f {}),ctrl-y:execute-silent(echo {} | pbcopy)+abort,ctrl-v:execute(vim {})+abort'"
+
+# _fzf_compgen_path() {
+#   ag -g "" "$1"
+# }
+#
+export _FASD_BLACKLIST="Godeps vendor"
+export HISTSIZE=20000
+export SAVEHIST=100000
+export AWS_DEFAULT_PROFILE='chargeback'
+export AWS_DEFAULT_REGION='us-west-1'
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export GOROOT="/usr/local/opt/go/libexec"
 export WORKON_HOME="$HOME/.virtualenvs"
 export PROJECT_HOME="$HOME/projects"
-export KUBERNETES_MASTER="http://172.17.4.101:8080"
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
 export DOCKER_HOST=172.17.0.55:2375
 export FLEETCTL_TUNNEL=172.17.8.101
 export ETCDCTL_PEERS=http://172.17.8.101:2379,http://172.17.8.102:2379,http://172.17.8.103:2379
 export SECURE_REPO=$HOME/projects/secure
 export INFRA_REPO=$HOME/projects/infra
-export KUBECONFIG=$HOME/.kube/config:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1b-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-east-1a-k8s/kubeconfig:$HOME/projects/infra/kubernetes/config/us-west-1c-k8s-internal/kubeconfig:$HOME/projects/coreos-kubernetes/multi-node/vagrant/kubeconfig:$HOME/projects/coreos-kubernetes/single-node/kubeconfig
 #export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
 export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
 

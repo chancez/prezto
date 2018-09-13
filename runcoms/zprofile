@@ -45,6 +45,7 @@ cdpath=(
   $HOME/go/src/github.com/ecnahc515
   $HOME/go/src/github.com/coreos
   $HOME/go/src/github.com/coreos-inc
+  $HOME/go/src/github.com/operator-framework
   $HOME/go/src/github.com
 )
 
@@ -56,8 +57,10 @@ path=(
   $GOPATH/bin
   $GOROOT/bin
   /usr/local/{bin,sbin}
+  $(brew --prefix)/opt/python/libexec/bin
   /opt/kubernetes/platforms/darwin/amd64
   /usr/local/m-cli
+  /usr/local/opt/curl/bin
   $path
 )
 
