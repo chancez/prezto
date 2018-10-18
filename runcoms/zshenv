@@ -59,3 +59,5 @@ export CARGO_HOME=$HOME/.cargo
 # The next line enables shell command completion for gcloud.
 [[ -s "$HOME/projects/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/completion.zsh.inc"
 
+[[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
+[[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"
