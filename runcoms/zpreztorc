@@ -21,10 +21,7 @@ zstyle ':prezto:*:*' color 'yes'
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 
-# Set the Prezto modules to load (browse modules).
-# The order matters.
-zstyle ':prezto:load' pmodule \
-  'environment' \
+PREZTO_MODULES_TO_LOAD=('environment' \
   'terminal' \
   'editor' \
   'history' \
@@ -37,11 +34,19 @@ zstyle ':prezto:load' pmodule \
   'go' \
   'ruby' \
   'gpg' \
-  'homebrew' \
   'archive' \
   'prompt' \
   'syntax-highlighting' \
-  'history-substring-search'
+  'history-substring-search')
+
+if [ "$(uname)" == "Darwin" ]; then
+    PREZTO_MODULES_TO_LOAD+=('homebrew')
+fi
+
+# Set the Prezto modules to load (browse modules).
+# The order matters.
+zstyle ':prezto:load' pmodule "${PREZTO_MODULES_TO_LOAD[@]}"
+
 
 #
 # Autosuggestions

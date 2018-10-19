@@ -18,12 +18,14 @@ setopt interactivecomments
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/projects/z/z.sh ] && source ~/projects/z/z.sh
 
-command -v hub && eval "$(hub alias -s)"
+command -v hub >/dev/null && eval "$(hub alias -s)"
 [[ -s "$(brew --prefix dvm)/dvm.sh" ]] && source "$(brew --prefix dvm)/dvm.sh"
-command -v kubectl && source <(kubectl completion zsh)
+command -v kubectl >/dev/null && source <(kubectl completion zsh)
 # Openshift completion for `oc`
-command -v oc && source <(oc completion zsh)
-command -v assume-role && source $(which assume-role)
+command -v oc >/dev/null && source <(oc completion zsh)
+command -v assume-role >/dev/null && source $(which assume-role)
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
+command -v fasd >/dev/null && eval "$(fasd --init auto)"
 
 # List folders, and sizes
 alias ducks='du -cksh * | sort -rn|head -11'
@@ -48,5 +50,3 @@ function minikube() {
 
 alias glgs="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
-command -v direnv && eval "$(direnv hook zsh)"
-command -v fasd && eval "$(fasd --init auto)"
