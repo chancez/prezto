@@ -19,7 +19,6 @@ setopt interactivecomments
 [ -f ~/projects/z/z.sh ] && source ~/projects/z/z.sh
 
 command -v hub >/dev/null && eval "$(hub alias -s)"
-[[ -s "$(brew --prefix dvm)/dvm.sh" ]] && source "$(brew --prefix dvm)/dvm.sh"
 command -v kubectl >/dev/null && source <(kubectl completion zsh)
 # Openshift completion for `oc`
 command -v oc >/dev/null && source <(oc completion zsh)
@@ -42,7 +41,10 @@ alias pyclean='find . -type f -name "*.py[co]" -exec rm -f \{\} \;'
 
 alias gst='git status'
 alias gi='git'
-alias vim='nvim'
+
+if command -v nvim >/dev/null; then
+    alias vim='nvim'
+fi
 
 function minikube() {
     (export KUBECONFIG=$HOME/.kube/configs/minikube.yaml && command minikube "$@")
