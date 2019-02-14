@@ -50,5 +50,25 @@ function minikube() {
     (export KUBECONFIG=$HOME/.kube/configs/minikube.yaml && command minikube "$@")
 }
 
+function minishift() {
+    (export KUBECONFIG=$HOME/.kube/configs/minishift.yaml && command minishift "$@")
+}
+
 alias glgs="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
+[[ -s "$HOME/.dvm/dvm.sh" ]] && source "$HOME/.dvm/dvm.sh"
+[[ -s "${HOME}/.iterm2_shell_integration.zsh" && "$UNAME" == "Darwin" ]] && source "$HOME/.iterm2_shell_integration.zsh"
+[[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+export CARGO_HOME=$HOME/.cargo
+
+# The next line updates PATH for the Google Cloud SDK.
+[[ -s "$HOME/projects/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/path.zsh.inc"
+
+# The next line enables shell command completion for gcloud.
+[[ -s "$HOME/projects/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/completion.zsh.inc"
+
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+[[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
+[[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"
+
+compdef k=kubectl

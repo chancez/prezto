@@ -39,25 +39,13 @@ export GOROOT="/usr/local/opt/go/libexec"
 export WORKON_HOME="$HOME/.virtualenvs"
 export PROJECT_HOME="$HOME/projects"
 export VAGRANT_DEFAULT_PROVIDER="virtualbox"
-export DOCKER_HOST=172.17.0.55:2375
 export FLEETCTL_TUNNEL=172.17.8.101
 export ETCDCTL_PEERS=http://172.17.8.101:2379,http://172.17.8.102:2379,http://172.17.8.103:2379
 export SECURE_REPO=$HOME/projects/secure
 export INFRA_REPO=$HOME/projects/infra
 #export TMUXIFIER_TMUX_ITERM_ATTACH="-CC"
 export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
+export FAQ_STYLE=solarized-dark
+export HOMEBREW_NO_INSTALL_CLEANUP=true
 
 [[ -s "$HOME/.zshenv_secrets" ]] && source "$HOME/.zshenv_secrets"
-[[ -s "$HOME/.dvm/dvm.sh" ]] && source "$HOME/.dvm/dvm.sh"
-[[ -s "${HOME}/.iterm2_shell_integration.zsh" ]] && source "$HOME/.iterm2_shell_integration.zsh"
-[[ -s "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
-export CARGO_HOME=$HOME/.cargo
-
-# The next line updates PATH for the Google Cloud SDK.
-[[ -s "$HOME/projects/google-cloud-sdk/path.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/path.zsh.inc"
-
-# The next line enables shell command completion for gcloud.
-[[ -s "$HOME/projects/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/completion.zsh.inc"
-
-[[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
-[[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"

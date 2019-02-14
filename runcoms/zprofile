@@ -53,12 +53,13 @@ cdpath=(
 # Set the list of directories that Zsh searches for programs.
 path=(
   $HOME/bin
+  $HOME/dotfiles/custom_bins
   $HOME/.tmuxifier/bin
   $GOPATH/bin
   $GOROOT/bin
   /usr/local/{bin,sbin}
-  $(brew --prefix)/opt/python/libexec/bin
-  /opt/kubernetes/platforms/darwin/amd64
+  /usr/local/opt/python/libexec/bin
+  "${KREW_ROOT:-$HOME/.krew}/bin"
   /usr/local/m-cli
   /usr/local/opt/curl/bin
   $path

@@ -39,14 +39,13 @@ PREZTO_MODULES_TO_LOAD=('environment' \
   'syntax-highlighting' \
   'history-substring-search')
 
-if [ "$(uname)" == "Darwin" ]; then
+if [[ "$(uname)" -eq "Darwin" ]]; then
     PREZTO_MODULES_TO_LOAD+=('homebrew')
 fi
 
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule "${PREZTO_MODULES_TO_LOAD[@]}"
-
 
 #
 # Autosuggestions
