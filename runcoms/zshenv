@@ -31,7 +31,6 @@ alias fzf="fzf --bind 'ctrl-l:execute(less -f {}),ctrl-y:execute-silent(echo {} 
 export _FASD_BLACKLIST="Godeps vendor"
 export HISTSIZE=20000
 export SAVEHIST=100000
-export AWS_DEFAULT_PROFILE='chargeback'
 export AWS_DEFAULT_REGION='us-west-1'
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
