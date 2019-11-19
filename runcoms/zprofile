@@ -57,10 +57,10 @@ path=(
   $HOME/.tmuxifier/bin
   $GOPATH/bin
   $GOROOT/bin
+  $HOME/Library/Python/2.7/bin
   /usr/local/{bin,sbin}
   /usr/local/opt/python/libexec/bin
   "${KREW_ROOT:-$HOME/.krew}/bin"
-  /usr/local/m-cli
   /usr/local/opt/curl/bin
   $path
 )
