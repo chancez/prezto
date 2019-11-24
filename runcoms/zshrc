@@ -72,3 +72,6 @@ export CARGO_HOME=$HOME/.cargo
 [[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"
 
 compdef k=kubectl
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault
