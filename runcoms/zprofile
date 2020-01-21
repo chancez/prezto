@@ -41,14 +41,10 @@ typeset -gU cdpath fpath mailpath path
 cdpath=(
   $cdpath
   $HOME
-  $PROJECT_HOME
-  $HOME/go/src/github.com/ecnahc515
-  $HOME/go/src/github.com/coreos
-  $HOME/go/src/github.com/coreos-inc
-  $HOME/go/src/github.com/operator-framework
+  $HOME/projects
+  $HOME/go/src/github.com/chancez
   $HOME/go/src/github.com
 )
-
 
 # Set the list of directories that Zsh searches for programs.
 path=(
