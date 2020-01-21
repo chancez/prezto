@@ -55,6 +55,7 @@ path=(
   $HOME/bin
   $HOME/dotfiles/custom_bins
   $HOME/.tmuxifier/bin
+  $HOME/.fzf/bin
   $GOPATH/bin
   $GOROOT/bin
   $HOME/Library/Python/2.7/bin

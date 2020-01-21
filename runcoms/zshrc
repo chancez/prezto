@@ -19,12 +19,15 @@ setopt interactivecomments
 [ -f ~/projects/z/z.sh ] && source ~/projects/z/z.sh
 
 command -v hub >/dev/null && eval "$(hub alias -s)"
-command -v kubectl >/dev/null && source <(kubectl completion zsh)
+command -v kubectl >/dev/null && source <(kubectl completion zsh); compdef k=kubectl
 # Openshift completion for `oc`
 command -v oc >/dev/null && source <(oc completion zsh)
 command -v assume-role >/dev/null && source $(which assume-role)
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 command -v fasd >/dev/null && eval "$(fasd --init auto)"
+
+# Completion for kitty
+command -v kitty >/dev/null && kitty + complete setup zsh | source /dev/stdin
 
 # List folders, and sizes
 alias ducks='du -cksh * | sort -rn|head -11'
@@ -70,8 +73,6 @@ export CARGO_HOME=$HOME/.cargo
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 [[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
 [[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"
-
-compdef k=kubectl
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
