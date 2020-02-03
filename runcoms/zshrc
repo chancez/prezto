@@ -15,11 +15,15 @@ fi
 
 setopt interactivecomments
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/projects/z/z.sh ] && source ~/projects/z/z.sh
+[ -f $HOME/.fzf/shell/key-bindings.zsh ] && source $HOME/.fzf/shell/key-bindings.zsh
+[ -f $HOME/.fzf/shell/completion.zsh ] && source $HOME/.fzf/shell/completion.zsh
 
 command -v hub >/dev/null && eval "$(hub alias -s)"
+<<<<<<< HEAD
 command -v kubectl >/dev/null && source <(kubectl completion zsh); compdef k=kubectl
+=======
+command -v kubectl >/dev/null && source <(kubectl completion zsh | sed '/"-f"/d')
+>>>>>>> Update prompt for kubectx and add vault and kustomize completion
 # Openshift completion for `oc`
 command -v oc >/dev/null && source <(oc completion zsh)
 command -v assume-role >/dev/null && source $(which assume-role)
@@ -45,16 +49,21 @@ alias pyclean='find . -type f -name "*.py[co]" -exec rm -f \{\} \;'
 alias gst='git status'
 alias gi='git'
 
+alias k=kubectl
+alias kc=kubectx
+alias kns=kubens
+
 if command -v nvim >/dev/null; then
     alias vim='nvim'
 fi
 
 function minikube() {
-    (export KUBECONFIG=$HOME/.kube/configs/minikube.yaml && command minikube "$@")
-}
-
-function minishift() {
-    (export KUBECONFIG=$HOME/.kube/configs/minishift.yaml && command minishift "$@")
+    CTX="$(kubectx -c)"
+    kubectx minikube >/dev/null
+    command minikube "$@"
+    code=$?
+    kubectx "$CTX" > /dev/null 2>&1 || :
+    return $code
 }
 
 alias glgs="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
@@ -71,8 +80,11 @@ export CARGO_HOME=$HOME/.cargo
 [[ -s "$HOME/projects/google-cloud-sdk/completion.zsh.inc" ]] && source "$HOME/projects/google-cloud-sdk/completion.zsh.inc"
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-[[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
+# [[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
+[[ -s "/usr/local/etc/profile.d/z.sh" ]] && source "/usr/local/etc/profile.d/z.sh"
 [[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/kustomize kustomize

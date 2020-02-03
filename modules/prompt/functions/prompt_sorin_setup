@@ -35,23 +35,17 @@ pmodload 'helper'
 function host_info {
     if [ -f /.dockerenv ]; then
         local host="container"
-    else
+    elif [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
         local host="$(hostname)"
     fi
-    echo -n " %F{green}$USER@$host$reset_color"
-}
-
-function aws_account_info {
-  [ "$AWS_ACCOUNT_NAME" ] && [ "$AWS_ACCOUNT_ROLE" ] && echo -n " %F{blue}(%f%F{yellow}aws:%f%F{red}$AWS_ACCOUNT_NAME:$AWS_ACCOUNT_ROLE%f%F{blue})%F$reset_color"
-}
-
-function kube_cluster_info {
-    if [ -n "$KUBECONFIG" ]; then
-        local _kube_cluster="$(basename $KUBECONFIG | sed 's/\.yaml//')"
-        local ns="${KUBE_NAMESPACE:-default}"
-        echo -n " %F{white}(kube:${_kube_cluster},ns:${ns})$reset_color"
+    if [ -n "$host" ]; then
+	echo -n " %F{green}$USER@$host$reset_color"
+    else
+	echo -n " %F{green}$USER$reset_color"
     fi
 }
+
+[ -f "/usr/local/opt/kube-ps1/share/kube-ps1.sh" ] && source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
 
 function prompt_sorin_git_info {
   # We can safely split on ':' because it isn't allowed in ref names.
@@ -153,7 +147,7 @@ function prompt_sorin_setup {
   _prompt_sorin_pwd=''
 
   # Define prompts.
-  PROMPT='${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}%F{4}${_prompt_sorin_pwd}$(kube_cluster_info)$(aws_account_info)$(host_info)%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
+  PROMPT='${SSH_TTY:+"%F{9}%n%f%F{7}@%f%F{3}%m%f "}%F{4}${_prompt_sorin_pwd}$(kube_ps1)$(host_info)%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   RPROMPT='${editor_info[overwrite]}%(?:: %F{1}⏎%f)${VIM:+" %B%F{6}V%f%b"}${_prompt_sorin_git}'
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }
