@@ -19,11 +19,7 @@ setopt interactivecomments
 [ -f $HOME/.fzf/shell/completion.zsh ] && source $HOME/.fzf/shell/completion.zsh
 
 command -v hub >/dev/null && eval "$(hub alias -s)"
-<<<<<<< HEAD
-command -v kubectl >/dev/null && source <(kubectl completion zsh); compdef k=kubectl
-=======
-command -v kubectl >/dev/null && source <(kubectl completion zsh | sed '/"-f"/d')
->>>>>>> Update prompt for kubectx and add vault and kustomize completion
+command -v kubectl >/dev/null && source <(kubectl completion zsh | sed '/"-f"/d'); compdef k=kubectl
 # Openshift completion for `oc`
 command -v oc >/dev/null && source <(oc completion zsh)
 command -v assume-role >/dev/null && source $(which assume-role)
