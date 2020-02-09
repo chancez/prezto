@@ -79,6 +79,7 @@ export CARGO_HOME=$HOME/.cargo
 # [[ -s "$HOME/dotfiles/zfuncs/kube.zsh" ]] && source "$HOME/dotfiles/zfuncs/kube.zsh"
 [[ -s "/usr/local/etc/profile.d/z.sh" ]] && source "/usr/local/etc/profile.d/z.sh"
 [[ -s "$HOME/dotfiles/zfuncs/fzf.zsh" ]] && source "$HOME/dotfiles/zfuncs/fzf.zsh"
+[[ -s "$HOME/projects/kube-ps1/kube-ps1.sh" ]] && source "$HOME/projects/kube-ps1/kube-ps1.sh"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
