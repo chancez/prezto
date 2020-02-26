@@ -22,7 +22,6 @@ command -v hub >/dev/null && eval "$(hub alias -s)"
 command -v kubectl >/dev/null && source <(kubectl completion zsh | sed '/"-f"/d'); compdef k=kubectl
 # Openshift completion for `oc`
 command -v oc >/dev/null && source <(oc completion zsh)
-command -v assume-role >/dev/null && source $(which assume-role)
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 command -v fasd >/dev/null && eval "$(fasd --init auto)"
 

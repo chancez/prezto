@@ -46,5 +46,6 @@ export INFRA_REPO=$HOME/projects/infra
 export LIBVIRT_DEFAULT_URI='qemu+tcp://172.17.8.101/system'
 export FAQ_STYLE=solarized-dark
 export HOMEBREW_NO_INSTALL_CLEANUP=true
+export BC_ENV_ARGS="$HOME/.bc"
 
 [[ -s "$HOME/.zshenv_secrets" ]] && source "$HOME/.zshenv_secrets"
